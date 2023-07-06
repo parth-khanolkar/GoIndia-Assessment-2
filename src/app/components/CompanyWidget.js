@@ -1,35 +1,71 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import Image from 'next/image'
 
 
 const CompanyWidget = ({featuredCompanies=[]}) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
+    const widgetRef = useRef(null)
+
     const handleClick = (index) => {
         setCurrentIndex(index);
     };
 
+    const handleScrollClick = (type) => {
+        if (type === "left") {
+
+            // widgetRef.current
+            // slide to left
+            if (widgetRef.current) {
+                widgetRef.current.scrollLeft -= 100; // Adjust the scroll distance as needed
+              }
+        } else {
+            
+            // widgetRef.current
+            // slide to right
+            if (widgetRef.current) {
+                widgetRef.current.scrollLeft += 100; // Adjust the scroll distance as needed
+              }
+        }
+    }
+
     // console.log("Featured Compannies: ", featuredCompanies);
   return (
-    <>
+    <div>
    <div className='text-red-700 text-lg font-semibold pl-4'>
     FEATURED COMPANIES
-</div>
-<div className="w-full border h-17 flex flex-row bg-sky-100">
-    {featuredCompanies?.map((item, index) => (
-        <div key={index} className='flex-1'>
-            <Image
-                src={item?.ImageURL}
-                width={120}
-                height={35}
-                className='h-16'
-                alt={item?.CompanyName}
-            />
-        </div>
-    ))}
-</div>
+    </div>
+    
+    <div className='relative'>
+        <div ref={widgetRef} className=" border h-17 flex flex-row bg-sky-100 overflow-x-scroll w-[100vw]">
+            {/* left arrow */}
+            <div
+            onClick={() => handleScrollClick("left")}
+            className='absolute left-0 top-0 bottom-0 flex items-center'>
+                Left
+            </div>
 
-    </>
+            {featuredCompanies?.map((item, index) => (
+                <div key={index} className='min-w-[120px] '>
+                    <img
+                        src={item?.ImageURL}
+                        
+                        className='h-16 min-w-[120px] object-contain'   
+                        alt={item?.CompanyName}
+                    />
+                </div>
+            ))}
+            {/* Right arroa */}
+            <div
+            onClick={() => handleScrollClick("right")}
+            className='absolute right-0 top-0 bottom-0 flex items-center'>
+                right
+            </div>
+    </div>
+    </div>
+    
+
+    </div>
   )
 }
 

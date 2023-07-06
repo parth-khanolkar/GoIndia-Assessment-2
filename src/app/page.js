@@ -40,9 +40,10 @@ export default function Home() {
     <div className='bg-stone-100'>
       <CompanyWidget featuredCompanies={data?.logo_list} />
       <div>
-        <div className='my-2 md:pl-20 py-4 text-red-700 text-3xl'>
+        <div className='mt-2 mb-1 md:pl-10 py-4 text-red-700 text-4xl font-semibold'>
                 Market Stories
         </div>
+        <hr className="border-gray-600 mb-6 mx-10" />
 
         <div>
           <div className='flex justify-center lg:flex-none lg:justify-start lg: ml-14 mb-4'>
@@ -60,14 +61,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className='md:grid md:grid-cols-12 gap-2 invisible md:visible bg-stone-100'>
-          <div className='md:col-span-8 mx-2' >
-            <DetailedArticle note_id={312} note_type={"Note"}/>
-          </div>
-          <div className='md:col-span-4 mx-2'>
-              <RecommendedStories reco_list={data?.reco_list} />
-            </div>
-        </div>
+        
       </div>
 
     </div>
