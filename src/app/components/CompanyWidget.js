@@ -9,7 +9,7 @@ const CompanyWidget = ({featuredCompanies=[]}) => {
         setCurrentIndex(index);
     };
 
-    console.log("Featured Compannies: ", featuredCompanies);
+    // console.log("Featured Compannies: ", featuredCompanies);
   return (
     <>
    <div className='text-red-700 text-lg font-semibold pl-4'>
