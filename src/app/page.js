@@ -7,15 +7,21 @@ import axios from 'axios';
 import DropdownBar from './components/DropDownBar';
 import LatestStories from './components/LatestStories';
 import RecommendedStories from './components/RecommendedStories';
+import DetailedArticle from './components/DetailedArticle';
 
 export default function Home() {
   const [data,setData] = useState(null);
+  const [fincode, setFincode] = useState(0);
+
+  const handleFincode = (res) => {
+    setFincode(res.value);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.post('https://transcriptanalyser.com/gislanding/article-home', {
-          fincode: 0
+          fincode
         });
 
         console.log("Json data: ",response.data);
@@ -27,7 +33,7 @@ export default function Home() {
 
     fetchData();
 
-  }, []); 
+  }, [fincode]); 
   
   return (
     <>
@@ -37,22 +43,31 @@ export default function Home() {
         <div className='my-2 md:pl-20 py-4 text-red-700 text-3xl'>
                 Market Stories
         </div>
+
         <div>
-        <div className='flex justify-center lg:flex-none lg:justify-start lg: ml-14 mb-4'>
-          <DropdownBar />
+          <div className='flex justify-center lg:flex-none lg:justify-start lg: ml-14 mb-4'>
+            <DropdownBar dropDownItems={data?.dropdown_list} 
+            sendData={handleFincode}
+            />
+          </div>
+          <div className='md:grid md:grid-cols-12 gap-2 invisible md:visible bg-stone-100'>
+            <div className='md:col-span-8 mx-2' >
+              <LatestStories latest_list={data?.latest_list} />
+            </div>
+            <div className='md:col-span-4 mx-2'>
+              <RecommendedStories reco_list={data?.reco_list}/>
+            </div>
+          </div>
         </div>
+
         <div className='md:grid md:grid-cols-12 gap-2 invisible md:visible bg-stone-100'>
           <div className='md:col-span-8 mx-2' >
-            <LatestStories latest_list={data?.latest_list} />
+            <DetailedArticle note_id={312} note_type={"Note"}/>
           </div>
           <div className='md:col-span-4 mx-2'>
-            <RecommendedStories reco_list={data?.reco_list}/>
-          </div>
-
+              <RecommendedStories reco_list={data?.reco_list} />
+            </div>
         </div>
-        </div>
-
-        
       </div>
 
     </div>

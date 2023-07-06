@@ -7,14 +7,13 @@ import { BiComment, BiShareAlt } from "react-icons/bi";
 
 const LatestStories = ({ latest_list=[] }) => {
 
-    console.log("Lastest Stoires -->",latest_list);
 
   return (
     <div className='pl-12 pr-3 '>
       LatestStories
     
     <div className='overflow-y-auto h-[70vh] pr-4 scrollbar '>
-        {/* {latest_list?.map((item, index) => (
+        {latest_list?.map((item, index) => (
             <div key={index}>
                 <div className="flex flex-col md:flex-row bg-white mt-5 w-full rounded-lg overflow-hidden  cursor-pointer">
                 <div className="flex flex-col md:flex-row items-start px-4 py-6">
@@ -63,10 +62,10 @@ const LatestStories = ({ latest_list=[] }) => {
                 </div>
                 </div>                
             </div>
-        ))} */}
+        ))}
 
 
-      <div className="flex flex-col md:flex-row bg-white mt-5 w-full rounded-lg overflow-hidden  cursor-pointer">
+      {/* <div className="flex flex-col md:flex-row bg-white mt-5 w-full rounded-lg overflow-hidden  cursor-pointer">
       <div className="flex flex-col md:flex-row items-start px-4 py-6">
           <div className="md:w-2/3">
           <div className="flex items-center justify-between">
@@ -111,7 +110,7 @@ const LatestStories = ({ latest_list=[] }) => {
           />
           </div>
       </div>
-      </div>
+      </div> */}
     </div>
 
 

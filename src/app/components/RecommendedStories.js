@@ -14,7 +14,7 @@ const RecommendedStories = ({reco_list =[]}) => {
     <div className='pl-3 pr-1'>
       Recommended Stories
         <div className="overflow-y-auto h-[70vh] pr-4">
-        {/* {reco_list?.map((item, index) => (
+        {reco_list?.map((item, index) => (
             <div key={index}>
                 <div className="flex  md:flex-row bg-white mt-5 w-full rounded-lg overflow-hidden shadow-2xl cursor-pointer" >
                     <div className=" md:flex-row  ">
@@ -28,8 +28,8 @@ const RecommendedStories = ({reco_list =[]}) => {
                     </div>
                 </div>
             </div>
-        ))} */}
-            <div className="flex  md:flex-row bg-white mt-5 w-full rounded-lg overflow-hidden shadow-2xl cursor-pointer" >
+        ))}
+            {/* <div className="flex  md:flex-row bg-white mt-5 w-full rounded-lg overflow-hidden shadow-2xl cursor-pointer" >
             <div className=" md:flex-row  ">
                 <Image
                     src="https://upload.wikimedia.org/wikipedia/commons/4/4b/BSE_building_at_Dalal_Street.JPG"
@@ -39,7 +39,7 @@ const RecommendedStories = ({reco_list =[]}) => {
                     className='p-4 w-full h-full rounded'
                 />
             </div>
-            </div>
+            </div> */}
         </div>
 
     </div>

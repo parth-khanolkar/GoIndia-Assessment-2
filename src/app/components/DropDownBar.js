@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import MdArrowDropDown from 'react-icons/md'
 
-const DropdownBar = ({ dropDownItems = [] }) => {
+const DropdownBar = ({ dropDownItems = [],sendData }) => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleItemClick = (item) => {
-    console.log("Selected Item--->", item);
+    setSelectedItem(item);
     setIsOpen(false);
+    sendData(item);
   };
 
   return (
@@ -16,6 +18,7 @@ const DropdownBar = ({ dropDownItems = [] }) => {
         onClick={() => setIsOpen(!isOpen)}
       >
         {selectedItem ? `${selectedItem.label}` : 'Select Company'}
+      {/* <MdArrowDropDown/> */}
       </button>
       {isOpen && (
         <ul className="dropdown-menu absolute left-0 w-full bg-white mt-2 shadow-lg rounded-md">
