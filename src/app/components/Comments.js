@@ -1,43 +1,51 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
+import axios from 'axios';
 
 import { AiOutlineHeart, AiFillHeart, AiOutlineEye, AiOutlineRead } from "react-icons/ai";
 import { TiLocationArrowOutline } from "react-icons/ti";
 import { IoIosArrowDropdown, IoMdCloseCircleOutline } from "react-icons/io";
 
-const Comments = ({ setIsCommentOpen }) => {
+const Comments = ({ sendData,note_id,note_type }) => {
+    const [comments,setComments] = useState(null);
+
+    const handleClick = () => {
+        sendData(false);
+    }
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await axios.post('https://transcriptanalyser.com/gislanding/article-comment', {
+              note_id,
+              note_type
+            });
+    
+            console.log("Comments data: ",response.data);
+            setComments(response.data?.key);
+          } catch (error) {
+            console.error(error);
+          }
+        };
+    
+        fetchData();
+    
+      }, []);
+
   return (
     <div className=' bg-white p-4 mr-6'>
       
-        <div className=' text-black text-lg font-semibold flex flex-row'>
-            Comments 
-            {/* <button onClick={setIsCommentOpen(false)} className='w-8 h-8'>
-                <IoMdCloseCircleOutline   />
-            </button> */}
-            
+        
+        <div className='text-black text-lg font-semibold flex flex-row items-center'>
+            <span className="flex-grow">Comments</span> 
+            <button onClick={handleClick} className='w-8 h-8 justify-end'>
+                <IoMdCloseCircleOutline />
+            </button>
         </div>
+
         <hr className="border-gray-600 my-2" />
         <div className="overflow-y-auto flex flex-col h-[70vh] mt-6 pr-4 bg-white">
-            {/* Recent {reco_list?.map((item, index) => (
-                <div key={index}>
-                    <div className="flex  md:flex-row bg-white mt-5 w-full rounded-lg overflow-hidden shadow-2xl cursor-pointer" >
-                        <div className=" md:flex-row  ">
-                            <Image
-                                src={item?.img_url}
-                                width={200}
-                                height={200}
-                                alt="Picture of the author"
-                                className='p-4 w-full h-full rounded'
-                            />
-                        </div>
-                    </div>
-                </div>
-            ))} */}
-
-           
-
-
-                
+             
             <div className="flex flex-col px-4 w-full rounded-lg ">
                
                 <div className="flex items-center">
@@ -70,9 +78,23 @@ const Comments = ({ setIsCommentOpen }) => {
             </div>
             <hr className="border-gray-600 mt-2 mb-4" />
 
-            <div className="flex flex-row px-4 w-full rounded-lg ">
+            <div className="flex flex-col px-4 w-full rounded-lg overflow-y-auto h">
                
-               <div className="flex flex-row items-center w-full rounded-lg border border-gray-300 px-2 py-4 pr-10">
+               <div className="flex flex-row items-center w-full rounded-lg border border-gray-300 px-2 py-4 pr-10 my-1">
+                   
+                   <div className="flex-1 ml-2">
+                       <div
+                       className="w-full px-4 py-2 "
+                       >
+                        Adam hughes
+                       </div>    
+                   </div>
+                   <div className="flex-1 ml-2">
+                         Helkloimo 
+                   </div>
+                  
+               </div>
+               <div className="flex flex-row items-center w-full rounded-lg border border-gray-300 px-2 py-4 pr-10 my-1">
                    <Image
                        // src="/path/to/avatar.png"
                        src='/images/avatar1.jpg'
@@ -93,6 +115,7 @@ const Comments = ({ setIsCommentOpen }) => {
                    </div>
                   
                </div>
+               
            
            </div>
 

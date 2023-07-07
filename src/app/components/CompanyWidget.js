@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react'
 import Image from 'next/image'
+import { AiFillCaretLeft, AiFillCaretRight } from 'react-icons/ai';
 
 
 const CompanyWidget = ({featuredCompanies=[]}) => {
@@ -37,12 +38,11 @@ const CompanyWidget = ({featuredCompanies=[]}) => {
     </div>
     
     <div className='relative'>
-        <div ref={widgetRef} className=" border h-17 flex flex-row bg-sky-100 overflow-x-scroll w-[100vw]">
-            {/* left arrow */}
+        <div ref={widgetRef} className=" border h-17 flex flex-row bg-sky-100 overflow-x-scroll w-[100vw] mx-4 ">
             <div
             onClick={() => handleScrollClick("left")}
-            className='absolute left-0 top-0 bottom-0 flex items-center'>
-                Left
+            className='absolute left-0 top-0 bottom-0 flex items-center bg-sky-400 '>
+                <AiFillCaretLeft/>
             </div>
 
             {featuredCompanies?.map((item, index) => (
@@ -55,11 +55,10 @@ const CompanyWidget = ({featuredCompanies=[]}) => {
                     />
                 </div>
             ))}
-            {/* Right arroa */}
             <div
             onClick={() => handleScrollClick("right")}
-            className='absolute right-0 top-0 bottom-0 flex items-center'>
-                right
+            className='absolute right-0 top-0 bottom-0 flex items-center bg-sky-400'>
+                <AiFillCaretRight/>
             </div>
     </div>
     </div>

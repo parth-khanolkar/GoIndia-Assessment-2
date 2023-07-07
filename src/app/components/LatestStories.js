@@ -15,9 +15,9 @@ const LatestStories = ({ latest_list=[] }) => {
   return (
     <div className='pl-16 pr-3 '>
      
-        <div className=' text-red-700 text-xl font-semibold'>
-            LATEST STORIES
-        </div>
+    <div className=' text-red-700 text-xl font-semibold'>
+        LATEST STORIES
+    </div>
     
     <div className='overflow-y-auto h-[70vh] pr-4 scrollbar '>
         {latest_list?.map((item, index) => (
@@ -41,7 +41,7 @@ const LatestStories = ({ latest_list=[] }) => {
                         </div>
                         <div className="flex col-span-4 flex-row text-xl">
                             <AiOutlineRead className="flex-1 mt-4  text-black text-xl" />
-                            <p className="flex-1 mt-3 -ml-6 text-lg">{item?.TimeToRead}min read</p>
+                            <p className="flex-1 mt-3 -ml-10 text-lg">{item?.TimeToRead} min read</p>
                         </div>
                         <div className="flex col-span-3 text-xl">
                             <AiOutlineEye className="flex-1 mt-4 text-black text-xl" />
@@ -52,7 +52,13 @@ const LatestStories = ({ latest_list=[] }) => {
                         <div className="flex col-span-1 flex-row text-xl">
                             <BiShareAlt className="flex-1 mt-3 text-black text-2xl" />   
                         </div>
-                        <div className="inline-block col-span-2 text-sm mx-auto px-4 mt-3 md:py-1 rounded-full bg-yellow-500 text-white">
+                        <div 
+                            className={`inline-block col-span-2 text-sm mx-auto px-4 mt-3 md:py-1 rounded-full text-white 
+                            ${
+                                item?.note_type === 'Article' ? 'bg-red-500' : 'bg-yellow-500'
+                            }
+                            `}
+                        >
                             {item?.note_type}
                         </div>
                     </div>

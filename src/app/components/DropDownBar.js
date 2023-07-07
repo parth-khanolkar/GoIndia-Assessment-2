@@ -36,6 +36,9 @@ const DropdownBar = ({ dropDownItems = [],sendData }) => {
         )}
       </div>
     </div>
+
+   
+
   );
 };
 

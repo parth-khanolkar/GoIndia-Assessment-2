@@ -1,9 +1,18 @@
 import React,{ useEffect, useState } from 'react'
 import axios from 'axios';
 
-const DetailedArticle = ({ note_id,note_type }) => {
+import Image from 'next/image';
+import Link from "next/link"
+
+import { AiOutlineHeart, AiFillHeart, AiOutlineEye, AiOutlineRead } from "react-icons/ai";
+import { BiComment, BiShareAlt } from "react-icons/bi";
+
+const DetailedArticle = ({ note_id,note_type,sendData }) => {
     
     const [data,setData] = useState(null);
+    const parentFunction = (data) => {
+      sendData(data);
+    }
     
     useEffect(() => {
         const fetchData = async () => {
@@ -15,6 +24,7 @@ const DetailedArticle = ({ note_id,note_type }) => {
     
             console.log("Detailed data: ",response.data);
             setData(response.data);
+            parentFunction(response.data);
           } catch (error) {
             console.error(error);
           }
@@ -23,16 +33,16 @@ const DetailedArticle = ({ note_id,note_type }) => {
         fetchData();
     
       }, []);
-
+      console.log("Detailed data: ",data);
   return (
     <div>
+      
         <div className='flex flex-col '>
-            <div className='text-3xl text-center '>
-                {data?.article_detail.Title}
-            </div>
+            
             {/* RENDERING GIVEN HTML  */}
             <div dangerouslySetInnerHTML={{__html:data?.article_detail.Desciption}} className='overflow-y-auto h-[70vh]'/>
         </div>
+ 
     </div>
   )
 }
