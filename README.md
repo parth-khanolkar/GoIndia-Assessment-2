@@ -1,20 +1,42 @@
+# [Live site](https://go-india-assessment-2.vercel.app/)
+
+# GoIndia Stocks Landing Page -2 
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This project is the second assesssment test given by GoIndia Stocks to test front-end development proficiency in NextJs and Tailwind CSS. Additional featue in this assessment tested is integrating and working with APIs in Next.js.
 
 ## Getting Started
 
-First, run the development server:
+## Getting Started
+
+First clone the repository:
+
+```bash
+git clone https://github.com/parth-khanolkar/GoIndia-Assessment-2.git
+```
+
+Change directory to GoIndia-Assessment:
+
+```bash
+cd GoIndia-Assessment-2
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
