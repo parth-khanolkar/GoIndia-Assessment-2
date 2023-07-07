@@ -8,10 +8,34 @@ import { IoIosArrowDropdown, IoMdCloseCircleOutline } from "react-icons/io";
 
 const Comments = ({ sendData,note_id,note_type }) => {
     const [comments,setComments] = useState(null);
+    const [comment,setComment] = useState(null);
+    const [change, setChange] = useState(0);
 
     const handleClick = () => {
         sendData(false);
     }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log('Submitted',comment);
+        try {
+            const response = await axios.post('https://transcriptanalyser.com/gislanding/add-comment', {
+              note_id,
+              note_type,
+              user_id: 231,
+              comment
+            });
+    
+            console.log("Comments data: ",response.data);
+            setChange(change + 1 );
+            console.log("Chnage ", change);
+          } catch (error) {
+            console.error(error);
+          }
+        };
+    
+
+    
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,7 +54,7 @@ const Comments = ({ sendData,note_id,note_type }) => {
     
         fetchData();
     
-      }, []);
+      }, [change]);
 
   return (
     <div className=' bg-white p-4 mr-6'>
@@ -57,17 +81,19 @@ const Comments = ({ sendData,note_id,note_type }) => {
                         height={40}
                         className="rounded-full"
                     />
-                    <div className="relative flex-1 ml-2">
+                    <form className="relative flex-1 ml-2" onSubmit={handleSubmit}>
                         <input
                         type="text"
                         className="w-full rounded-lg border border-gray-300 px-4 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="Write your thoughts"
+                        value={comment}
+                        onChange={(e)=>setComment(e.target.value)}
                         />
-                        <div className="absolute inset-y-0 right-0 flex items-center mr-2 pointer-events-none">
+                        <button className="absolute inset-y-0 right-0 flex items-center mr-2 pointer-events-none" >
                         <TiLocationArrowOutline className="text-xl text-gray-400" />
-                        </div>
+                        </button>
                         
-                    </div>
+                    </form>
                    
                 </div>
 
@@ -80,41 +106,48 @@ const Comments = ({ sendData,note_id,note_type }) => {
 
             <div className="flex flex-col px-4 w-full rounded-lg overflow-y-auto h">
                
-               <div className="flex flex-row items-center w-full rounded-lg border border-gray-300 px-2 py-4 pr-10 my-1">
-                   
-                   <div className="flex-1 ml-2">
-                       <div
-                       className="w-full px-4 py-2 "
-                       >
-                        Adam hughes
-                       </div>    
-                   </div>
-                   <div className="flex-1 ml-2">
-                         Helkloimo 
-                   </div>
-                  
-               </div>
-               <div className="flex flex-row items-center w-full rounded-lg border border-gray-300 px-2 py-4 pr-10 my-1">
-                   <Image
-                       // src="/path/to/avatar.png"
-                       src='/images/avatar1.jpg'
-                       alt="Avatar"
-                       width={36}
-                       height={36}
-                       className="rounded-full"
-                   />
-                   <div className="flex-1 ml-2">
-                       <div
-                       className="w-full px-4 py-2 "
-                       >
-                        Adam hughes
-                       </div>    
-                   </div>
-                   <div className="flex-1 ml-2">
-                         Helkloimo 
-                   </div>
-                  
-               </div>
+
+
+                {comments?.map((item, index) => (
+
+                    // <div key={index} className="flex flex-row items-center w-full rounded-lg border border-gray-300 px-2 py-4 pr-10 my-1">
+                        
+                    //     <div className="flex-1 ml-2">
+                    //         <div
+                    //         className="w-full px-4 py-2 "
+                    //         >
+                    //             {item.Name}
+                    //         </div>    
+                    //     </div>
+                    //     <div className="flex-1 ml-2">
+                    //             {item.DateInserted} 
+                    //     </div>
+                    //     <div>
+                    //         {item.comment}
+                    //     </div>
+                        
+                    // </div>
+                    <div key={index} className="flex flex-col w-full rounded-lg border border-gray-300 px-2 py-4 pr-10 my-1">
+  <div className="flex flex-row items-center">
+    <div className="flex-1 ml-2 flex items-center">
+      <Image
+        src="/images/avatar1.jpg"
+        alt="Avatar"
+        width={40}
+        height={40}
+        className="rounded-full"
+      />
+      <div className="w-full px-4 py-2">{item.Name}</div>
+    </div>
+    <div className="flex-1 ml-2">{item.DateInserted}</div>
+  </div>
+  <div>{item.comment}</div>
+</div>
+
+
+                    
+                ))}
+               
                
            
            </div>
