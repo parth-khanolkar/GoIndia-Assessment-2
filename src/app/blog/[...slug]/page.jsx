@@ -65,8 +65,9 @@ const Detail = ({ params }) => {
                 Market Stories
         </div>
         <hr className="border-gray-600 mb-6 mx-10" />
-        <div className="flex justify-center items-center">
-          <div className="text-3xl">
+
+        <div className="md:grid md:grid-cols-12">
+          <div className="md:col-span-8 text-3xl mx-auto">
             {articleDetails?.article_detail.Title}
           </div>
         </div>
