@@ -32,6 +32,7 @@ const Comments = ({ sendData,note_id,note_type }) => {
           } catch (error) {
             console.error(error);
           }
+          setComment('');
         };
     
 
@@ -128,21 +129,21 @@ const Comments = ({ sendData,note_id,note_type }) => {
                         
                     // </div>
                     <div key={index} className="flex flex-col w-full rounded-lg border border-gray-300 px-2 py-4 pr-10 my-1">
-  <div className="flex flex-row items-center">
-    <div className="flex-1 ml-2 flex items-center">
-      <Image
-        src="/images/avatar1.jpg"
-        alt="Avatar"
-        width={40}
-        height={40}
-        className="rounded-full"
-      />
-      <div className="w-full px-4 py-2">{item.Name}</div>
-    </div>
-    <div className="flex-1 ml-2">{item.DateInserted}</div>
-  </div>
-  <div>{item.comment}</div>
-</div>
+                    <div className="flex flex-row items-center">
+                        <div className="flex-1 ml-2 flex items-center">
+                        <Image
+                            src="/images/avatar1.jpg"
+                            alt="Avatar"
+                            width={40}
+                            height={40}
+                            className="rounded-full"
+                        />
+                        <div className="w-full px-4 py-2">{item.Name}</div>
+                        </div>
+                        <div className="flex-1 ml-2">{item.DateInserted}</div>
+                    </div>
+                    <div>{item.comment}</div>
+                    </div>
 
 
                     
