@@ -41,7 +41,7 @@ const Detail = ({ params }) => {
             fincode
           });
   
-          console.log("Json data: ",response.data);
+          console.log("Json dataa: ",response.data);
           setData(response.data);
         } catch (error) {
           console.error(error);
